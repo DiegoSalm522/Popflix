@@ -1,16 +1,27 @@
-# React + Vite
+# 🍿 Popflix
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive streaming-style web application powered by the TMDB API, showcasing complete and up-to-date details for movies and TV shows through an intuitive, modern, and visually engaging UI.
+Popflix offers a smooth browsing experience with dynamic sections, interactive components, and fast global search.
 
-Currently, two official plugins are available:
+## 🚀 Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎬 Dynamic Content Sections — Browse Trending, Popular, Top-Rated, and genre-based categories.
+- 🔍 Global Search Bar — Instantly explore any movie or TV show available in the TMDB database.
+- 🎠 Interactive Carousels — Smoothly swipe through categories and featured content.
+- 🪄 Modals with Detailed Info — View synopses, data, ratings, and more within clean pop-up previews.
+- ▶️ Embedded Trailers — Watch official trailers directly inside the app with a built-in video modal.
+- ⭐ Watchlist System — Users can add and remove movies and TV shows from their personal watchlist.
+- 📱 Fully Responsive Design — Optimized for mobile, tablet, and desktop for a seamless streaming-like experience.
 
-## React Compiler
+## 🛠️ Tech Stack
+- ⚛️ React
+- 💛 JavaScript (ES6+)
+- 🧾 HTML5
+- 🎨 Tailwind CSS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 💡 About the Project
+Popflix was created to replicate the feel of modern streaming platforms while emphasizing UI/UX quality, API integration, and dynamic content rendering.
+It highlights interactive design patterns, optimized rendering, and smooth user navigation.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🤝 Let’s Connect!
+If you enjoy this project or want to collaborate, feel free to reach out — always open to new ideas and challenges! 🌟
