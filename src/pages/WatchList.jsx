@@ -1,7 +1,7 @@
 import React from "react"
 import { FaStar } from "react-icons/fa"
 import { IoPlayCircle } from "react-icons/io5"
-import { MdRemoveCircle } from "react-icons/md"
+import { MdOutlineTvOff, MdRemoveCircle } from "react-icons/md"
 import { useMoviesShows } from "../context/Context"
 import { getImageURL, getTitle, getYear } from "../services/api"
 
@@ -20,7 +20,9 @@ const WatchList = () => {
             My Watch List
           </h1>
           <div className="flex flex-col items-center justify-center py-20">
-            <div className="text-neutral-400 text-6xl mb-4">📺</div>
+            <div className="text-neutral-400 text-6xl mb-4">
+              <MdOutlineTvOff size={180}/>
+            </div>
             <h2 className="text-2xl font-semibold text-white mb-2">
               Your Watch List is Empty
             </h2>
