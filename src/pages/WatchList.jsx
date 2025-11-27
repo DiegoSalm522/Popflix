@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { FaStar } from "react-icons/fa"
 import { IoPlayCircle } from "react-icons/io5"
 import { MdOutlineTvOff, MdRemoveCircle } from "react-icons/md"
@@ -12,6 +12,10 @@ const WatchList = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertType, setAlertType] = useState("success");
   const [alertMessage, setAlertMessage] = useState("");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const formatRating = (rating) => {
     return (Math.round(rating * 10) / 10).toFixed(1);
