@@ -14,7 +14,7 @@ const WatchList = () => {
 
   if (watchList.length === 0) {
     return (
-      <div className="min-h-screen pt-24 pb-12 bg-neutral-950">
+      <div className="min-h-screen pt-24 pb-12">
         <div className="mx-auto px-4 max-w-7xl">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-8">
             My Watch List
