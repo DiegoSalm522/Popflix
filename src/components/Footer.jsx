@@ -6,7 +6,7 @@ import { Link, NavLink } from "react-router-dom"
 
 const Footer = () => {
   return (
-    <div className="bg-neutral-900 text-neutral-400 border-t border-neutral-800 ">
+    <div className="text-neutral-400 border-t border-neutral-800 ">
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
