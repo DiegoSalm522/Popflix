@@ -1,20 +1,40 @@
-import React from "react"
+import React, { useState } from "react"
 import { FaStar } from "react-icons/fa"
 import { IoPlayCircle } from "react-icons/io5"
 import { MdOutlineTvOff, MdRemoveCircle } from "react-icons/md"
 import { useMoviesShows } from "../context/Context"
 import { getImageURL, getTitle, getYear } from "../services/api"
+import Alert from "../components/Alert"
 
 const WatchList = () => {
   const { watchList, openContentDetails, removeFromWatchList } = useMoviesShows();
+
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertType, setAlertType] = useState("success");
+  const [alertMessage, setAlertMessage] = useState("");
 
   const formatRating = (rating) => {
     return (Math.round(rating * 10) / 10).toFixed(1);
   }
 
+  const showAlertMessage = (type, message) => {
+    setAlertType(type);
+    setAlertMessage(message);
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 5000);
+  };
+
+  const handleRemove = (id, mediaType) => {
+    removeFromWatchList(id, mediaType);
+    showAlertMessage("success", "Removed from your watch list");
+  };
+
   if (watchList.length === 0) {
     return (
       <div className="min-h-screen pt-24 pb-12">
+        {showAlert && <Alert type={alertType} text={alertMessage} />}
         <div className="mx-auto px-4 max-w-7xl">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-8">
             My Watch List
@@ -37,6 +57,7 @@ const WatchList = () => {
 
   return (
     <div className="min-h-screen pt-24 pb-12 bg-neutral-950">
+      {showAlert && <Alert type={alertType} text={alertMessage} />}
       <div className="mx-auto px-4 max-w-7xl">
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
@@ -69,7 +90,7 @@ const WatchList = () => {
                         Watch Now
                       </button>
                       <button 
-                        onClick={() => removeFromWatchList(item.id, item.media_type)}
+                        onClick={() => handleRemove(item.id, item.media_type)}
                         className="w-full bg-neutral-950 hover:-translate-y-1 duration-200 border border-neutral-800 text-white py-3 rounded-full flex items-center justify-center gap-1 transition-all text-sm cursor-pointer"
                       >
                         <MdRemoveCircle size={22}/>

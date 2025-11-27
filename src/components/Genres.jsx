@@ -5,6 +5,7 @@ import { useMoviesShows } from "../context/Context"
 import { fetchContentByGenre, getImageURL, getTitle, getYear } from "../services/api"
 import { IoIosAddCircle } from "react-icons/io"
 import { MdRemoveCircle } from "react-icons/md"
+import Alert from "./Alert";
 
 const Genres = ({ mediaType = "all" }) => {
   const { genres, loading: contextLoading, openContentDetails, addToWatchList, removeFromWatchList, isInWatchList } = useMoviesShows();
@@ -13,6 +14,9 @@ const Genres = ({ mediaType = "all" }) => {
   const [loadingContent, setLoadingContent] = useState(false);
   const [availableGenres, setAvailableGenres] = useState([]);
   const [initialLoading, setInitialLoading] = useState(true);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertType, setAlertType] = useState("success");
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     const validateGenres = async () => {
@@ -83,12 +87,23 @@ const Genres = ({ mediaType = "all" }) => {
     setSelectedGenre(genreId);
   };
 
+  const showAlertMessage = (type, message) => {
+    setAlertType(type);
+    setAlertMessage(message);
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 5000);
+  };
+
   const handleWatchListClick = (e, item) => {
     e.stopPropagation();
     if (isInWatchList(item.id, item.media_type)) {
       removeFromWatchList(item.id, item.media_type);
+      showAlertMessage("success", "Removed from your watch list");
     } else {
       addToWatchList(item);
+      showAlertMessage("success", "Added to your watch list");
     }
   };
 
@@ -140,6 +155,7 @@ const Genres = ({ mediaType = "all" }) => {
 
   return (
     <section className="py-12">
+      {showAlert && <Alert type={alertType} text={alertMessage} />}
       <div className="mx-auto px-4 max-w-7xl">
         <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
           {getSectionTitle()}

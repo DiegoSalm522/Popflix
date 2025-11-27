@@ -5,11 +5,16 @@ import { IoPlayCircle } from "react-icons/io5"
 import { MdRemoveCircle } from "react-icons/md";
 import { useMoviesShows } from "../context/Context";
 import { getImageURL, getTitle, getYear } from "../services/api";
+import Alert from "./Alert";
 
 const Hero = ({content}) => {
   const {loading, openContentDetails, addToWatchList, removeFromWatchList, isInWatchList} = useMoviesShows();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertType, setAlertType] = useState("success");
+  const [alertMessage, setAlertMessage] = useState("");
 
   const featuredContent = content.slice(0, 5);
 
@@ -46,16 +51,28 @@ const Hero = ({content}) => {
     return mediaType === "tv" ? "TV SERIES" : "MOVIE";
   }
 
+  const showAlertMessage = (type, message) => {
+    setAlertType(type);
+    setAlertMessage(message);
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 5000);
+  };
+
   const handleWatchListClick = () => {
     if (isInWatchList(currentContent.id, currentContent.media_type)) {
       removeFromWatchList(currentContent.id, currentContent.media_type);
+      showAlertMessage("success", "Removed from your watch list");
     } else {
       addToWatchList(currentContent);
+      showAlertMessage("success", "Added to your watch list");
     }
   }
 
   return (
     <div className="relative w-full h-screen mb-8">
+      {showAlert && <Alert type={alertType} text={alertMessage} />}
       {/* Movies Backdrop */}
       <div className={`absolute inset-0 bg-cover bg-center bg-neutral-900 transition-all duration-700 ${
         isTransitioning ? "opacity-0" : "opacity-100"

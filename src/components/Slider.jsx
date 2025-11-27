@@ -1,14 +1,18 @@
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import { FaStar } from "react-icons/fa"
 import { IoPlayCircle } from "react-icons/io5"
 import { MdChevronLeft, MdChevronRight, MdRemoveCircle } from "react-icons/md"
 import { getImageURL, getTitle, getYear } from "../services/api"
 import { IoIosAddCircle } from "react-icons/io"
 import { useMoviesShows } from "../context/Context"
+import Alert from "./Alert";
 
 const Slider = ({ title, content }) => {
   const sliderRef = useRef(null);
   const { openContentDetails, addToWatchList, removeFromWatchList, isInWatchList } = useMoviesShows();
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertType, setAlertType] = useState("success");
+  const [alertMessage, setAlertMessage] = useState("");
 
   const displayContent = content.slice(0, 20);
 
@@ -34,12 +38,23 @@ const Slider = ({ title, content }) => {
     }
   }
 
+  const showAlertMessage = (type, message) => {
+    setAlertType(type);
+    setAlertMessage(message);
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 5000);
+  };
+
   const handleWatchListClick = (e, item) => {
     e.stopPropagation();
     if (isInWatchList(item.id, item.media_type)) {
       removeFromWatchList(item.id, item.media_type);
+      showAlertMessage("success", "Removed from your watch list");
     } else {
       addToWatchList(item);
+      showAlertMessage("success", "Added to your watch list");
     }
   }
 
@@ -49,6 +64,7 @@ const Slider = ({ title, content }) => {
 
   return (
     <section className="py-5">
+      {showAlert && <Alert type={alertType} text={alertMessage} />}
       <div className="mx-auto px-4 max-w-7xl">
         <div className="flex items-baseline justify-between mb-8">
           <div className="text-2xl md:text-3xl font-bold text-white">

@@ -5,6 +5,7 @@ import { IoPlayCircle, IoWarningOutline } from "react-icons/io5"
 import { MdClose, MdOutlineComputer, MdRemoveCircle } from "react-icons/md"
 import { useMoviesShows } from "../context/Context"
 import { fetchContentDetails, getImageURL, getTitle, getYear } from "../services/api"
+import Alert from "./Alert";
 
 const Details = () => {
   const { selectedContent, closeContentDetails, addToWatchList, removeFromWatchList, isInWatchList } = useMoviesShows();
@@ -12,6 +13,9 @@ const Details = () => {
   const [trailer, setTrailer] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertType, setAlertType] = useState("success");
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     const loadDetails = async () => {
@@ -63,17 +67,35 @@ const Details = () => {
     return (Math.round(rating * 10) / 10).toFixed(1);
   };
 
+  const showAlertMessage = (type, message) => {
+    setAlertType(type);
+    setAlertMessage(message);
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 5000);
+  };
+
   const handleWatchListClick = () => {
     if (!details) return;
     if (isInWatchList(details.id, details.media_type)) {
       removeFromWatchList(details.id, details.media_type);
+      showAlertMessage("success", "Removed from your watch list");
     } else {
       addToWatchList(details);
+      showAlertMessage("success", "Added to your watch list");
+    }
+  };
+
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      closeContentDetails();
     }
   };
 
   return (
-    <div className="fixed inset-0 z-80 flex items-center justify-center p-4 bg-neutral-900/95 backdrop-blur-sm overflow-auto">
+    <div onClick={handleBackdropClick} className="fixed inset-0 z-80 flex items-center justify-center p-4 bg-neutral-900/95 backdrop-blur-sm overflow-auto">
+      {showAlert && <Alert type={alertType} text={alertMessage} />}
       <div className="relative w-full max-w-5xl bg-neutral-950 rounded-lg shadow-xl max-h-[90vh] overflow-y-auto">
         {/* Close Button */}
         <button 
