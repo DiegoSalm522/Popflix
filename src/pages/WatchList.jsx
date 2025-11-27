@@ -40,7 +40,7 @@ const WatchList = () => {
       <div className="min-h-screen pt-24 pb-12">
         {showAlert && <Alert type={alertType} text={alertMessage} />}
         <div className="mx-auto px-4 max-w-7xl">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold text-white mb-8">
             My Watch List
           </h1>
           <div className="flex flex-col items-center justify-center py-20">
