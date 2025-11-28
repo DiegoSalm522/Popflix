@@ -135,12 +135,12 @@ const Details = () => {
         {!loading && !error && details && (
           <div>
             {/* Backdrop Header */}
-            <div className="relative h-72 md:h-96 w-full">
+            <div className="relative h-72 md:h-96 w-full overflow-hidden">
               {details.backdrop_path ? (
                 <img
                   src={getImageURL(details.backdrop_path, "original")}
                   alt={getTitle(details)}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               ) : (
                 <div className="w-full h-full bg-neutral-950"/>
