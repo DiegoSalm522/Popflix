@@ -16,7 +16,7 @@ const Hero = ({content}) => {
   const [alertType, setAlertType] = useState("success");
   const [alertMessage, setAlertMessage] = useState("");
 
-  const featuredContent = content.slice(0, 5);
+  const featuredContent = content.slice(7, 12);
 
   useEffect(() => {
     if (featuredContent.length === 0) return;
