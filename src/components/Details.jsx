@@ -94,7 +94,7 @@ const Details = () => {
   };
 
   return (
-    <div onClick={handleBackdropClick} className="fixed inset-0 z-80 flex items-center justify-center p-4 bg-neutral-900/95 backdrop-blur-sm overflow-auto">
+    <div onClick={handleBackdropClick} className="fixed inset-0 z-80 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm overflow-auto">
       {showAlert && <Alert type={alertType} text={alertMessage} />}
       <div className="relative w-full max-w-5xl bg-neutral-950 rounded-lg shadow-xl max-h-[90vh] overflow-y-auto">
         {/* Close Button */}
@@ -140,7 +140,9 @@ const Details = () => {
                 <img
                   src={getImageURL(details.backdrop_path, "original")}
                   alt={getTitle(details)}
-                  className="w-full h-full object-cover object-top"
+                  className={`w-full h-full object-cover ${
+                    getTitle(details).includes("WWE") ? "object-top" : ""
+                  }`}
                 />
               ) : (
                 <div className="w-full h-full bg-neutral-950"/>
@@ -197,7 +199,7 @@ const Details = () => {
                       {details.genres.map((genre) => (
                         <span 
                           key={genre.id}
-                          className="bg-neutral-700 text-neutral-300 px-3 py-1 rounded-full text-xs"
+                          className="bg-neutral-800 text-neutral-300 px-3 py-1 rounded-full text-xs"
                         >
                           {genre.name}
                         </span>

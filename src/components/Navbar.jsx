@@ -109,7 +109,7 @@ const Navbar = () => {
           ${isOpen
             ? "bg-black md:bg-transparent"
             : isScrolled
-              ? "bg-neutral-900/95 backdrop-blur-md shadow-lg"
+              ? "bg-black backdrop-blur-md shadow-lg"
               : "bg-transparent"
           }
         `}
@@ -161,7 +161,12 @@ const Navbar = () => {
                 value={searchQuery}
                 onChange={handleSearchChange}
                 placeholder="Search movies & TV shows....."
-                className="bg-neutral-800 text-white px-4 py-2 pr-11 focus:pr-20 rounded-full text-md w-64 focus:w-80 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-500"  
+                className={`text-white px-4 py-2 pr-11 focus:pr-20 rounded-full text-md w-64 focus:w-80 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-500
+                  ${isScrolled
+                    ? "bg-neutral-900"
+                    : "bg-black"
+                  }
+                `}
               />             
               {searchQuery && (
                 <button
@@ -183,15 +188,15 @@ const Navbar = () => {
             </div>
             {/* Search Results Dropdown */}
             {showSearchResults && searchResult.length > 0 && (
-              <div className="absolute mt-2 w-80 bg-neutral-800 rounded-lg shadow-lg overflow-hidden z-50 max-h-96 overflow-y-auto">
-                <ul className="divide-y divide-neutral-700">
+              <div className="absolute mt-2 w-80 bg-neutral-950 rounded-lg shadow-lg overflow-hidden z-50 max-h-96 overflow-y-auto">
+                <ul className="divide-y divide-neutral-800">
                   {searchResult.map((item) => (
-                    <li key={`${item.id}-${item.media_type}`} className="hover:bg-neutral-700">
+                    <li key={`${item.id}-${item.media_type}`} className="hover:bg-neutral-800">
                       <button 
                         onClick={() => handleResultClick(item)}
                         className="flex items-center p-3 w-full text-left"
                       >
-                        <div className="w-12 h-16 bg-neutral-700 rounded overflow-hidden flex shrink-0">
+                        <div className="w-12 h-16 bg-neutral-800 rounded overflow-hidden flex shrink-0">
                           {item.poster_path ? (
                             <img 
                               src={getImageURL(item.poster_path, "w92")} 
@@ -222,7 +227,7 @@ const Navbar = () => {
             )}
             {/* No Results */}
             {showSearchResults && searchQuery.trim().length >= 2 && searchResult.length === 0 && !isSearching && (
-              <div className="absolute mt-2 w-80 bg-neutral-800 rounded-lg shadow-lg overflow-hidden z-50">
+              <div className="absolute mt-2 w-80 bg-neutral-950 rounded-lg shadow-lg overflow-hidden z-50">
                 <div className="p-4 text-center text-neutral-400 text-sm">
                   No results found for "{searchQuery}"
                 </div>
@@ -280,7 +285,7 @@ const Navbar = () => {
             value={searchQuery}
             onChange={handleSearchChange}
             placeholder="Search movies & TV shows..."
-            className="bg-neutral-800 text-white px-4 py-2 pr-20 rounded-full text-md w-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-500"  
+            className="bg-neutral-900 text-white px-4 py-2 pr-20 rounded-full text-md w-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-500" 
           />         
           {searchQuery && (
             <button
@@ -301,15 +306,15 @@ const Navbar = () => {
           </div>
           {/* Mobile Search Results */}
           {showSearchResults && searchResult.length > 0 && (
-            <div className="absolute mt-2 w-full bg-neutral-800 rounded-lg shadow-lg overflow-hidden z-50 max-h-72 overflow-y-auto">
-              <ul className="divide-y divide-neutral-700">
+            <div className="absolute mt-2 w-full bg-neutral-950 rounded-lg shadow-lg overflow-hidden z-50 max-h-72 overflow-y-auto">
+              <ul className="divide-y divide-neutral-800">
                 {searchResult.map((item) => (
-                  <li key={`${item.id}-${item.media_type}`} className="hover:bg-neutral-700">
+                  <li key={`${item.id}-${item.media_type}`} className="hover:bg-neutral-800">
                     <button 
                       onClick={() => handleResultClick(item)}
                       className="flex items-center p-3 w-full text-left"
                     >
-                      <div className="w-12 h-16 bg-neutral-700 rounded overflow-hidden flex shrink-0">
+                      <div className="w-12 h-16 bg-neutral-800 rounded overflow-hidden flex shrink-0">
                         {item.poster_path ? (
                           <img 
                             src={getImageURL(item.poster_path, "w92")} 
@@ -340,7 +345,7 @@ const Navbar = () => {
           )}
           {/* Mobile No Results */}
           {showSearchResults && searchQuery.trim().length >= 2 && searchResult.length === 0 && !isSearching && (
-            <div className="absolute mt-2 w-full bg-neutral-800 rounded-lg shadow-lg overflow-hidden z-50">
+            <div className="absolute mt-2 w-full bg-neutral-950 rounded-lg shadow-lg overflow-hidden z-50">
               <div className="p-4 text-center text-neutral-400 text-sm">
                 No results found for "{searchQuery}"
               </div>

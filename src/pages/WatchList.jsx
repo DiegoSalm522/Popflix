@@ -60,7 +60,7 @@ const WatchList = () => {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-12 bg-neutral-950">
+    <div className="min-h-screen pt-24 pb-12">
       {showAlert && <Alert type={alertType} text={alertMessage} />}
       <div className="mx-auto px-4 max-w-7xl">
         <div className="mb-8">

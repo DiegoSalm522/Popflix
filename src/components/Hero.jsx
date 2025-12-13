@@ -32,7 +32,7 @@ const Hero = ({content}) => {
 
   if (loading || featuredContent.length === 0){
     return(
-      <div className="relative w-full h-screen flex items-center justify-center bg-neutral-900">
+      <div className="relative w-full h-screen flex items-center justify-center bg-neutral-950">
         <div className="animate-pulse flex flex-col items-center">
           <div className="w-16 h-16 border-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
           <p className="mt-4 text-neutral-400">Loading content.....</p>
@@ -74,13 +74,13 @@ const Hero = ({content}) => {
     <div className="relative w-full h-screen mb-8">
       {showAlert && <Alert type={alertType} text={alertMessage} />}
       {/* Movies Backdrop */}
-      <div className={`absolute inset-0 bg-cover bg-center bg-neutral-900 transition-all duration-700 ${
+      <div className={`absolute inset-0 bg-cover bg-center bg-neutral-800 transition-all duration-700 ${
         isTransitioning ? "opacity-0" : "opacity-100"
       }`} style={{backgroundImage: `url(${getImageURL(currentContent.backdrop_path)})`}}
       >
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-black opacity-30" />
-        <div className="absolute inset-0 bg-linear-to-r from-neutral-900/80 to-transparent"/>
+        <div className="absolute inset-0 bg-linear-to-r from-black/80 to-transparent"/>
       </div>
       {/* Content */}
       <div className="absolute inset-0 flex items-center z-10">
@@ -93,7 +93,7 @@ const Hero = ({content}) => {
                   FEATURED
                 </span>
                 {/* Media Type */}
-                <span className="bg-neutral-800 text-neutral-200 text-xs font-semibold px-2 py-1 rounded-sm">
+                <span className="bg-neutral-950 text-neutral-200 text-xs font-semibold px-2 py-1 rounded-sm">
                   {getMediaTypeLabel(currentContent.media_type)}
                 </span>
                 {/* Rating */}
